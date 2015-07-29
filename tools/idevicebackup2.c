@@ -49,7 +49,12 @@
 #define sleep(x) Sleep(x*1000)
 #else
 #include <termios.h>
+#if defined(__ANDROID__)
+#include <sys/vfs.h>
+#define statvfs statfs
+#else
 #include <sys/statvfs.h>
+#endif
 #endif
 #include <sys/stat.h>
 
